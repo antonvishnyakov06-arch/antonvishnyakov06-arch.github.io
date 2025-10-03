@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #clock {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            background-color: rgb(141, 141, 221);
+            color:#ffffff;
+            border-radius: 10px;
+            padding: 10px 0 20px 0 20px; 
+            box-shadow: 0 4px 8px rgba(28, 24, 30, 0.1);
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #taskInput {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #addButton {
+            width: 60px;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #addButton:hover {
+            background-color: #4cae4c;
+        }
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #taskList li {
+            background-color: #eee;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            flex-wrap: wrap;
+        }
+        .status-buttons {
+            display: flex;
+            gap: 4px;
+            margin-left: 10px;
+        }
+        .started {
+            background-color: #d9edf7 !important;
+            color: #31708f !important;
+        }
+        .half {
+            background-color: #fcf8e3 !important;
+            color: #8a6d3b !important;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888 !important;
+            background-color: #dff0d8 !important;
+        }
+        .status-buttons button {
+            font-size: 11px;
+            padding: 3px 7px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+        .started-btn { background: #0275d8; color: #fff; }
+        .half-btn { background: #f0ad4e; color: #fff; }
+        .done-btn { background: #5cb85c; color: #fff; }
+        .delete-button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock" style="text-align:center; font-size:1.5rem; margin-bottom: 20px;"></div>
+    <div class="container">
+        <h1>My To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button id="addButton">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskInput = document.getElementById('taskInput');
+            const addButton = document.getElementById('addButton');
+            const taskList = document.getElementById('taskList');
+
+            function addTask() {
+                const taskText = taskInput.value.trim();
+                if (taskText !== "") {
+                    const newTask = document.createElement('li');
+                    newTask.innerHTML = `
+                        <span>${taskText}</span>
+                        <div class="status-buttons">
+                            <button class="started-btn">Started</button>
+                            <button class="half-btn">50% Done</button>
+                            <button class="done-btn">100% Done</button>
+                            <button class="delete-button">Delete</button>
+                        </div>
+                    `;
+                    const startedBtn = newTask.querySelector('.started-btn');
+                    const halfBtn = newTask.querySelector('.half-btn');
+                    const doneBtn = newTask.querySelector('.done-btn');
+                    const deleteBtn = newTask.querySelector('.delete-button');
+                    const span = newTask.querySelector('span');
+
+                    startedBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        newTask.classList.remove('half', 'completed');
+                        newTask.classList.add('started');
+                    });
+                    halfBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        newTask.classList.remove('started', 'completed');
+                        newTask.classList.add('half');
+                    });
+                    doneBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        newTask.classList.remove('started', 'half');
+                        newTask.classList.add('completed');
+                    });
+                    deleteBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        taskList.removeChild(newTask);
+                    });
+                    span.addEventListener('click', function(e) {
+                        newTask.classList.toggle('completed');
+                    });
+                    taskList.appendChild(newTask);
+                    taskInput.value = "";
+                }
+            }
+
+            addButton.addEventListener('click', addTask);
+            taskInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    addTask();
+                }
+            });
+        });
+        
+    </script>
+    
+    <script src="js/clock.js"></script>
+</body>
+</html>
