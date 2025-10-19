@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traverse Finland Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Verdana, Tahoma, sans-serif;
+            background: #fbfcfd;
+            color: #0f1926;
+        }
+        .outdoordescription {
+            max-width: 1100px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #4d4847;
+            color: #8baad0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 99999;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #fbfcfd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #8baad0;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 1.5rem auto 0.5rem;
+            padding: 0 1rem;
+        }
+        header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        /* layout: image left, text right */
+        .content-section {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        /* helper to flip order (image on right, text on left) */
+        .content-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .outdoorphoto {
+            flex: 0 0 48%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .outdoorphoto img {
+            width: 100%;
+            height: auto;
+            max-width: 560px;
+            border: 2px solid rgba(15,25,38,0.08); /* small border */
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(15,25,38,0.06);
+            display: block;
+        }
+
+        .OutdoorText {
+            flex: 1;
+            padding-left: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* responsive: stack on small screens */
+        @media (max-width: 900px) {
+            .content-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .outdoorphoto {
+                order: 0;
+                justify-content: center;
+            }
+            .content-section.reverse .outdoorphoto {
+                order: 0;
+            }
+            .OutdoorText {
+                order: 1;
+                padding-left: 0;
+            }
+            .outdoorphoto img {
+                max-width: 98vw;
+            }
+        }
+
+        .socials {
+            text-align: center;
+            font-size: 1.2rem;
+            background-color: #8baad0;
+            color: #0f1926;
+        }
+
+        .socialimages {
+            width: 72px;
+            height: 72px;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .socialimages:hover {
+            transform: scale(1.15);
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="citytours.html">City Tours</a>
+            <a href="outdoor.html">Outdoor Adventures</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <h1>
+      Contact us
+    </h1>
+
+
+    <div class="socials">
+        <a href="https://www.instagram.com/traversefinland/"><img class="socialimages" src="instalogo.png" alt="instagram logo"></a>
+        <a href="#"><img class="socialimages" src="facebook-logo-facebook-icon-transparent-free-png-4083518378.png" alt="facebook logo"></a>
+        <a href="#"><img class="socialimages" src="linked in.png" alt="linkedin logo"></a>
+    </div>
+</body>
+</html>
