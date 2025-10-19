@@ -2,188 +2,175 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Traverse Finland</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My To-Do List</title>
     <style>
         body {
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            font-family: Verdana, Tahoma, sans-serif, sans-serif;
+            background: #fbfcfd;
+            color: #0f1926;
         }
-        #clock {
+        nav {
+            background: #4d4847;
+            color: #8baad0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            position: sticky;
+            top:0; 
+            z-index: 99999;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #fbfcfd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #8baad0;
+        }
+      
+        .title-section {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            background-color: rgb(141, 141, 221);
-            color:#ffffff;
-            border-radius: 10px;
-            padding: 10px 0 20px 0 20px; 
-            box-shadow: 0 4px 8px rgba(28, 24, 30, 0.1);
+            background-color: #8baad0;
         }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
+        .title-section img {
+            max-width: 420px;
+            width: 90vw;
+            height: auto;
+            margin-bottom: 1rem;
+            
         }
-        h1 {
-            text-align: center;
-            color: #333;
+        .title-section h2 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 0;
+            background-color: #8baad0;
         }
-        #taskInput {
-            width: calc(100% - 70px);
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .feature-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem auto;
+            padding: 2rem 1rem;
             box-sizing: border-box;
         }
-        #addButton {
-            width: 60px;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .feature-row.reverse {
+            flex-direction: row-reverse;
         }
-        #addButton:hover {
-            background-color: #4cae4c;
+        .feature-img {
+            width: 520px;
+            max-width: 90vw;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #ddd;
+            display: block;
+            border: #8baad0 4px solid;
         }
-        #taskList {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 20px;
+        .feature-img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
         }
-        #taskList li {
-            background-color: #eee;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s ease;
-            flex-wrap: wrap;
+        .feature-text {
+            flex: 1;
+            min-width: 200px;
         }
-        .status-buttons {
-            display: flex;
-            gap: 4px;
-            margin-left: 10px;
+        .feature-text h3 {
+            margin-top: 0;
         }
-        .started {
-            background-color: #d9edf7 !important;
-            color: #31708f !important;
+        @media (max-width: 900px) {
+            .feature-row, .feature-row.reverse {
+                flex-direction: column !important;
+                text-align: center;
+                
+            }
+            .feature-img {
+                max-width: 98vw;
+                width: 100%;
+                height: 220px;
+            }
+            
         }
-        .half {
-            background-color: #fcf8e3 !important;
-            color: #8a6d3b !important;
+        .socials {
+            text-align: center;
+            font-size: 1.2rem;
+            background-color: #8baad0;
+            color: #0f1926;
         }
-        .completed {
-            text-decoration: line-through;
-            color: #888 !important;
-            background-color: #dff0d8 !important;
-        }
-        .status-buttons button {
-            font-size: 11px;
-            padding: 3px 7px;
-            border-radius: 3px;
-            border: none;
-            cursor: pointer;
-        }
-        .started-btn { background: #0275d8; color: #fff; }
-        .half-btn { background: #f0ad4e; color: #fff; }
-        .done-btn { background: #5cb85c; color: #fff; }
-        .delete-button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-left: 8px;
-        }
-        .delete-button:hover {
-            background-color: #c9302c;
+        
+        
+         #socialimages{ 
+            width: 100px;
+            height: 100px;
+            vertical-align: middle;
+            margin-left: 0.5rem;}
+
+        
+        #socialimages:hover {
+            transform: scale(1.2);
+            transition: transform 0.3s;
         }
     </style>
 </head>
 <body>
-    <div id="clock" style="text-align:center; font-size:1.5rem; margin-bottom: 20px;"></div>
-    <div class="container">
-        <h1>My To-Do List</h1>
-        <input type="text" id="taskInput" placeholder="Add a new task...">
-        <button id="addButton">Add</button>
-        <ul id="taskList"></ul>
+    <nav>
+        <div class="nav-links">
+            <a href="landing.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="citytours.html">City Tours</a>
+            <a href="outdoor.html">Outdoor Adventures</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <section class="title-section">
+        <img src="logotraverse.png" alt="a text logo saying traverse finland">
+        <h2>Your door to the finnish wilderness</h2>
+    </section>
+
+    <div class="feature-row">
+        <img class="feature-img" src="homepage5.png" alt="Nature Trail">
+        <div class="feature-text">
+            <h3>Finnish Forests</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const taskInput = document.getElementById('taskInput');
-            const addButton = document.getElementById('addButton');
-            const taskList = document.getElementById('taskList');
-
-            function addTask() {
-                const taskText = taskInput.value.trim();
-                if (taskText !== "") {
-                    const newTask = document.createElement('li');
-                    newTask.innerHTML = `
-                        <span>${taskText}</span>
-                        <div class="status-buttons">
-                            <button class="started-btn">Started</button>
-                            <button class="half-btn">50% Done</button>
-                            <button class="done-btn">100% Done</button>
-                            <button class="delete-button">Delete</button>
-                        </div>
-                    `;
-                    const startedBtn = newTask.querySelector('.started-btn');
-                    const halfBtn = newTask.querySelector('.half-btn');
-                    const doneBtn = newTask.querySelector('.done-btn');
-                    const deleteBtn = newTask.querySelector('.delete-button');
-                    const span = newTask.querySelector('span');
-
-                    startedBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        newTask.classList.remove('half', 'completed');
-                        newTask.classList.add('started');
-                    });
-                    halfBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        newTask.classList.remove('started', 'completed');
-                        newTask.classList.add('half');
-                    });
-                    doneBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        newTask.classList.remove('started', 'half');
-                        newTask.classList.add('completed');
-                    });
-                    deleteBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        taskList.removeChild(newTask);
-                    });
-                    span.addEventListener('click', function(e) {
-                        newTask.classList.toggle('completed');
-                    });
-                    taskList.appendChild(newTask);
-                    taskInput.value = "";
-                }
-            }
-
-            addButton.addEventListener('click', addTask);
-            taskInput.addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    addTask();
-                }
-            });
-        });
-        
-    </script>
+    <div class="feature-row reverse">
+        <img class="feature-img" src="homepage1.png" alt="City Tour">
+        <div class="feature-text">
+            <h3>City Tours</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <div class="feature-row">
+        <img class="feature-img" src="homepage2.png" alt="Winter Adventure">
+        <div class="feature-text">
+            <h3>Winter Adventures</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <div class="feature-row reverse">
+        <img class="feature-img" src="homepeage4.png" alt="Sauna Experience">
+        <div class="feature-text">
+            <h3>Traditional food</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <div class="socials">
+<a href="https://www.instagram.com/traversefinland/"><img id="socialimages" src="instalogo.png" alt="intagram logo"></a> 
+<a href="#"><img id="socialimages" src="facebook-logo-facebook-icon-transparent-free-png-4083518378.png" alt="facebook logo"></a>
+<a href=""> <img id="socialimages" src="linked in.png" alt="linked in logo"></a>
     
-    <script src="js/clock.js"></script>
+    </div>
+ 
 </body>
 </html>
