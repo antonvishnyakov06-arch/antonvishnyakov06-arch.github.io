@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traverse Finland City Tours</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Verdana, Tahoma, sans-serif;
+            background: #fbfcfd;
+            color: #0f1926;
+        }
+        .outdoordescription {
+            max-width: 1100px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #4d4847;
+            color: #8baad0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 99999;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #fbfcfd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #8baad0;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 1.5rem auto 0.5rem;
+            padding: 0 1rem;
+        }
+        header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        /* layout: image left, text right */
+        .content-section {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        /* helper to flip order (image on right, text on left) */
+        .content-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .outdoorphoto {
+            flex: 0 0 48%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .outdoorphoto img {
+            width: 100%;
+            height: auto;
+            max-width: 560px;
+            border: 2px solid rgba(15,25,38,0.08); /* small border */
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(15,25,38,0.06);
+            display: block;
+        }
+
+        .OutdoorText {
+            flex: 1;
+            padding-left: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* responsive: stack on small screens */
+        @media (max-width: 900px) {
+            .content-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .outdoorphoto {
+                order: 0;
+                justify-content: center;
+            }
+            .content-section.reverse .outdoorphoto {
+                order: 0;
+            }
+            .OutdoorText {
+                order: 1;
+                padding-left: 0;
+            }
+            .outdoorphoto img {
+                max-width: 98vw;
+            }
+        }
+
+        .socials {
+            text-align: center;
+            font-size: 1.2rem;
+            background-color: #8baad0;
+            color: #0f1926;
+        }
+
+        .socialimages {
+            width: 72px;
+            height: 72px;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .socialimages:hover {
+            transform: scale(1.15);
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="citytours.html">City Tours</a>
+            <a href="outdoor.html">Outdoor Adventures</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Experience Helsinki Through Stories, Streets & Flavors City Tours with a Local Touch</h1>
+    </header>
+<div class="outdoordescription">
+ <p>Discover Helsinki beyond the surface with our guided city tours that bring Finland’s capital to life through its rich history, iconic architecture, vibrant culture, and deep-rooted traditions. Whether you're a first-time visitor or a curious local, our tours are designed to reveal the many layers of this unique Nordic city.</p>
+</div>
+    <!-- 1) Image on the left, text on the right -->
+    <main class="content-section">
+        <div class="outdoorphoto">
+            <img src="imgs/Citytours.png" alt="Outdoor Adventure">
+        </div>
+
+        <div class="OutdoorText">
+           
+
+            <h2>Out Helsinki Tours Include:</h2>
+          
+<ul>
+<li>Historical Walking Tours
+Explore Helsinki's evolution from a modest trading town to a modern Nordic capital. Walk through centuries of history with stories of kings, independence, wars, and everyday life.</li>
+<li>City Bike Tours
+Cycle through charming neighborhoods, coastal paths, and green parks while learning about local life, culture, and landmarks—all at a relaxed, scenic pace.</li>
+<li>Food Tours
+Taste your way through Helsinki! Visit local markets, cafes, and street food spots while learning about Finnish culinary traditions and the seasonal ingredients that shape them.</li>
+<li>Architecture & Design Tours
+From neoclassical gems to functionalist modernism and cutting-edge Nordic design, uncover the architecture that defines Helsinki’s skyline and identity.</li>
+<li>Folklore & Mythology Tours
+Step into the world of ancient Finnish legends, mythical creatures, and pagan traditions that still echo in the city’s parks, statues, and stories.</li>
+<li>Classic Sightseeing Tours
+Perfect for first-time visitors, our guided overview of Helsinki’s must-see landmarks includes Senate Square, the Rock Church, the Sibelius Monument, Market Square, and more.</li>
+</ul>    
+            
+            <p>Cook and enjoy traditional Finnish meals over an open fire in the wild.</p>
+        </div>
+    </main>
+
+   
+    <div class="socials">
+        <a href="https://www.instagram.com/traversefinland/"><img class="socialimages" src="imgs/instalogo.png" alt="instagram logo"></a>
+        <a href="#"><img class="socialimages" src="imgs/facebook-logo-facebook-icon-transparent-free-png-4083518378.png" alt="facebook logo"></a>
+        <a href="#"><img class="socialimages" src="imgs/linked in.png" alt="linkedin logo"></a>
+    </div>
+</body>
+</html>
